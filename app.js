@@ -17,12 +17,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnLoader = document.getElementById('btnLoader');
     const errorMsg = document.getElementById('errorMsg');
 
-    // Dummy Configuration Mapping
+    // Dummy Configuration Mapping (semesters 1–8)
     const subjectsMap = {
-        'AIDS': { 'I': 'Mathematics I', 'II': 'Data Structures', 'III': 'Machine Learning', 'IV': 'Database Management Systems' },
-        'CS': { 'I': 'Physics', 'II': 'Algorithms', 'III': 'Operating Systems', 'IV': 'Cloud Computing' },
-        'IT': { 'I': 'Communication Skills', 'II': 'Computer Networks', 'III': 'Software Engineering', 'IV': 'Cyber Security' },
-        'MECH': { 'I': 'Engineering Mechanics', 'II': 'Thermodynamics', 'III': 'Fluid Mechanics', 'IV': 'Automobile Engineering' }
+        'AIDS': {
+            '1': 'Mathematics I',
+            '2': 'Data Structures',
+            '3': 'Machine Learning',
+            '4': 'Database Management Systems',
+            '5': 'Elective A',
+            '6': 'Elective B',
+            '7': 'Project Work',
+            '8': 'Industrial Training'
+        },
+        'CS': {
+            '1': 'Physics',
+            '2': 'Algorithms',
+            '3': 'Operating Systems',
+            '4': 'Cloud Computing',
+            '5': 'AI Fundamentals',
+            '6': 'Computer Vision',
+            '7': 'Capstone Project',
+            '8': 'Seminar'
+        },
+        'IT': {
+            '1': 'Communication Skills',
+            '2': 'Computer Networks',
+            '3': 'Software Engineering',
+            '4': 'Cyber Security',
+            '5': 'Web Technologies',
+            '6': 'Database Systems',
+            '7': 'Mobile Development',
+            '8': 'Cloud Services'
+        },
+        'MECH': {
+            '1': 'Engineering Mechanics',
+            '2': 'Thermodynamics',
+            '3': 'Fluid Mechanics',
+            '4': 'Automobile Engineering',
+            '5': 'Manufacturing Processes',
+            '6': 'Heat Transfer',
+            '7': 'Robotics',
+            '8': 'Internship'
+        }
     };
 
     seatForm.addEventListener('submit', (e) => {
@@ -35,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Retrieve values
         const rollNo = parseInt(rollNoInput.value);
         const department = document.getElementById('department').value;
-        const year = document.getElementById('year').value;
+        const semester = document.getElementById('semester').value;
 
         // Validation with Shake Animation
         if (isNaN(rollNo) || rollNo <= 0) {
@@ -73,14 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Construct Strings
             const finalRoomStr = `${prefix}-${finalRoomNumber}`;
-            const finalSubjectStr = (subjectsMap[department] && subjectsMap[department][year])
-                ? subjectsMap[department][year]
+            const finalSubjectStr = (subjectsMap[department] && subjectsMap[department][semester])
+                ? subjectsMap[department][semester]
                 : 'General Examination';
 
             // --- Update UI Modal ---
             roomDisplay.textContent = finalRoomStr;
             subjectDisplay.textContent = finalSubjectStr;
-            deptDisplay.textContent = `${department} (${year})`;
+            deptDisplay.textContent = `${department} (Sem ${semester})`;
             rollDisplay.textContent = rollNo;
 
             // Show Overlay
